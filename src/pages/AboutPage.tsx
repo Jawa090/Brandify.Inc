@@ -74,26 +74,29 @@ const AboutPage = () => {
 
       <Navbar />
 
-      <main>
+      <main className="bg-background">
         {/* Hero Section */}
-        <section ref={heroRef} className="pt-32 pb-20 md:pt-40 md:pb-32">
-          <div className="container-premium">
+        <section ref={heroRef} className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+          {/* Background Glow */}
+          <div className="absolute top-0 center w-full h-full bg-hero-glow opacity-60 pointer-events-none" />
+
+          <div className="container-premium relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-6 block">
-                  About Us
+                <span className="inline-block px-3 py-1 mb-6 text-[10px] uppercase tracking-[0.2em] font-semibold text-primary/60 border border-primary/20 rounded-full">
+                  Who We Are
                 </span>
-                <h1 className="text-display mb-8">
+                <h1 className="text-display mb-8 text-primary">
                   Where Vision
                   <br />
-                  <span className="italic">Meets Craft</span>
+                  <span className="italic text-gold font-serif">Meets Craft</span>
                 </h1>
-                <p className="text-subhead">
-                  We're a team of strategists, designers, and developers united by 
+                <p className="text-subhead text-muted-foreground/80">
+                  We're a team of strategists, designers, and developers united by
                   a singular passion: creating brands that matter.
                 </p>
               </motion.div>
@@ -104,25 +107,46 @@ const AboutPage = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="relative"
               >
-                <div className="aspect-[4/3] rounded-3xl overflow-hidden">
+                {/* Decorative Blob */}
+                <div className="absolute inset-0 bg-gold/10 blur-[80px] rounded-full pointer-events-none" />
+
+                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-primary/5">
                   <img
                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
                     alt="Brandify.Inc Team"
                     className="w-full h-full object-cover"
                   />
+                  <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-8 rounded-2xl">
-                  <div className="text-4xl font-serif font-medium">5+</div>
-                  <div className="text-sm opacity-80">Years of Excellence</div>
-                </div>
+
+                {/* Float Badge */}
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={isHeroInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="absolute -bottom-6 -left-6 bg-white/80 backdrop-blur-md border border-white/40 p-6 rounded-2xl shadow-xl"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-gold">
+                      <Award className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-serif font-medium text-primary">5+</div>
+                      <div className="text-xs uppercase tracking-wider text-muted-foreground">Years of Excellence</div>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </section>
 
         {/* Story Section */}
-        <section className="py-24 bg-secondary/30">
-          <div className="container-premium">
+        <section className="py-24 bg-secondary/20 relative overflow-hidden">
+          {/* Grain Texture */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none" />
+
+          <div className="container-premium relative z-10">
             <div className="max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -131,13 +155,13 @@ const AboutPage = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
               >
-                <span className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
+                <span className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-gold mb-4 block">
                   Our Story
                 </span>
-                <h2 className="text-headline">
+                <h2 className="text-5xl md:text-6xl font-serif font-medium text-primary mb-6">
                   Built on Passion,
                   <br />
-                  <span className="italic">Driven by Purpose</span>
+                  <span className="italic text-muted-foreground/60">Driven by Purpose</span>
                 </h2>
               </motion.div>
 
@@ -146,24 +170,24 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="space-y-6 text-body text-muted-foreground text-center"
+                className="space-y-8 text-lg font-light leading-loose text-muted-foreground text-center"
               >
                 <p>
-                  Brandify.Inc was founded with a simple belief: every brand has a 
-                  unique story waiting to be told. Our mission is to uncover that 
-                  narrative and bring it to life through exceptional design and 
+                  Brandify.Inc was founded with a simple belief: every brand has a
+                  unique story waiting to be told. Our mission is to uncover that
+                  narrative and bring it to life through exceptional design and
                   strategic thinking.
                 </p>
                 <p>
-                  What started as a small studio with big dreams has grown into a 
-                  full-service creative agency trusted by leading brands worldwide. 
-                  Yet our core philosophy remains unchanged—we approach each project 
+                  What started as a small studio with big dreams has grown into a
+                  full-service creative agency trusted by leading brands worldwide.
+                  Yet our core philosophy remains unchanged—we approach each project
                   with the same passion, curiosity, and commitment to excellence.
                 </p>
-                <p>
-                  We believe in the power of design to transform businesses, connect 
-                  communities, and inspire action. Every pixel, every word, every 
-                  interaction is an opportunity to create something meaningful.
+                <div className="h-px w-24 bg-primary/10 mx-auto my-8" />
+                <p className="font-serif text-xl italic text-primary">
+                  "We believe in the power of design to transform businesses, connect
+                  communities, and inspire action."
                 </p>
               </motion.div>
             </div>
@@ -171,26 +195,23 @@ const AboutPage = () => {
         </section>
 
         {/* Values Section */}
-        <section className="py-24">
+        <section className="py-24 bg-background">
           <div className="container-premium">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="text-center max-w-3xl mx-auto mb-16"
+              className="text-center max-w-3xl mx-auto mb-20"
             >
-              <span className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
-                Our Values
-              </span>
-              <h2 className="text-headline">
+              <h2 className="text-5xl font-serif font-medium text-primary mb-6">
                 Principles That
                 <br />
-                <span className="italic">Guide Us</span>
+                <span className="italic text-gold">Guide Us</span>
               </h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -198,15 +219,15 @@ const AboutPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="premium-card group"
+                  className="bg-white rounded-2xl p-8 border border-primary/5 shadow-sm hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-500 group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
-                    <value.icon className="w-6 h-6" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-gold transition-all duration-500">
+                    <value.icon className="w-5 h-5 text-primary group-hover:text-gold transition-colors duration-500" />
                   </div>
-                  <h3 className="text-xl font-serif font-medium mb-3">
+                  <h3 className="text-xl font-serif font-medium mb-3 text-primary">
                     {value.title}
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-sm leading-relaxed text-muted-foreground/80">
                     {value.description}
                   </p>
                 </motion.div>
@@ -215,26 +236,30 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="py-24 bg-secondary/30">
-          <div className="container-premium">
+        {/* Team Section (Kept & Redesigned) */}
+        <section className="py-32 bg-primary relative overflow-hidden">
+          {/* Background Decor */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="container-premium relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="text-center max-w-3xl mx-auto mb-16"
+              className="text-center max-w-3xl mx-auto mb-20"
             >
-              <span className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
+              <span className="inline-block px-3 py-1 mb-6 text-[10px] uppercase tracking-[0.2em] font-semibold text-gold border border-gold/20 rounded-full">
                 Our Team
               </span>
-              <h2 className="text-headline">
+              <h2 className="text-5xl md:text-6xl font-serif font-medium text-primary-foreground mb-6">
                 The Minds Behind
                 <br />
-                <span className="italic">The Magic</span>
+                <span className="italic text-gold opacity-90">The Magic</span>
               </h2>
-              <p className="text-body text-muted-foreground mt-6">
-                A diverse team of creative thinkers and strategic minds working 
+              <p className="text-lg text-primary-foreground/60 max-w-lg mx-auto">
+                A diverse team of creative thinkers and strategic minds working
                 together to bring your vision to life.
               </p>
             </motion.div>
@@ -249,16 +274,21 @@ const AboutPage = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group"
                 >
-                  <div className="relative overflow-hidden rounded-2xl aspect-[4/5] mb-4">
+                  <div className="relative overflow-hidden rounded-[2rem] aspect-[3/4] mb-6 border border-white/10 group-hover:border-gold/50 transition-colors duration-500">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0 transition-all"
                     />
-                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+
+                    {/* Social Overlay possibility (simplified for now) */}
                   </div>
-                  <h3 className="text-lg font-serif font-medium">{member.name}</h3>
-                  <p className="text-sm text-muted-foreground">{member.role}</p>
+
+                  <div className="text-center">
+                    <h3 className="text-xl font-serif font-medium text-primary-foreground group-hover:text-gold transition-colors duration-300">{member.name}</h3>
+                    <p className="text-sm text-primary-foreground/60 uppercase tracking-widest font-sans mt-2">{member.role}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -266,7 +296,7 @@ const AboutPage = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-24 bg-primary text-primary-foreground">
+        <section className="py-24 bg-background border-t border-primary/5">
           <div className="container-premium text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -274,13 +304,13 @@ const AboutPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="text-headline mb-6">
+              <h2 className="text-display md:text-5xl mb-8 text-primary">
                 Let's Create Together
               </h2>
-              <p className="text-body opacity-80 max-w-xl mx-auto mb-10">
+              <p className="text-body text-muted-foreground max-w-xl mx-auto mb-10">
                 Ready to start your brand transformation journey?
               </p>
-              <a href="/contact" className="inline-flex items-center gap-2 bg-primary-foreground text-primary px-8 py-4 rounded-full font-sans font-medium transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+              <a href="/contact" className="btn-primary inline-flex items-center gap-2">
                 Get in Touch
               </a>
             </motion.div>

@@ -38,7 +38,7 @@ const Process = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="process" className="section-padding bg-secondary/30" ref={ref}>
+    <section id="process" className="section-padding bg-secondary/20" ref={ref}>
       <div className="container-premium">
         {/* Section Header */}
         <motion.div
@@ -47,13 +47,13 @@ const Process = () => {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <span className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
+          <span className="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.2em] font-semibold text-primary/60 border border-primary/20 rounded-full">
             Our Process
           </span>
-          <h2 className="text-headline mb-6">
+          <h2 className="text-display md:text-5xl lg:text-6xl mb-6 text-primary">
             A Proven Path to
             <br />
-            <span className="italic">Brand Success</span>
+            <span className="italic font-serif text-muted-foreground/80">Brand Success</span>
           </h2>
           <p className="text-body text-muted-foreground">
             Our refined methodology ensures consistent results, transforming your
@@ -64,7 +64,7 @@ const Process = () => {
         {/* Process Steps */}
         <div className="relative">
           {/* Connection Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-border -translate-y-1/2" />
+          <div className="hidden lg:block absolute top-[28%] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent dashed-border" />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
@@ -73,26 +73,26 @@ const Process = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="relative"
+                className="relative group"
               >
-                <div className="relative bg-card rounded-3xl p-8 text-center h-full">
+                <div className="relative bg-background/50 backdrop-blur-sm rounded-[2rem] p-8 text-center h-full border border-primary/5 hover:border-gold/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
                   {/* Number Badge */}
-                  <div className="relative z-10 mx-auto w-16 h-16 rounded-full bg-background border-2 border-primary flex items-center justify-center mb-6">
-                    <span className="font-serif text-xl font-medium text-primary">
+                  <div className="relative z-10 mx-auto w-16 h-16 rounded-full bg-background border border-primary/10 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:border-gold/50 transition-all duration-500">
+                    <span className="font-serif text-xl font-medium text-primary group-hover:text-gold transition-colors">
                       {step.number}
                     </span>
                   </div>
 
                   {/* Icon */}
-                  <div className="w-12 h-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                    <step.icon className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 mx-auto rounded-full bg-primary/5 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-gold transition-all duration-500">
+                    <step.icon className="w-5 h-5" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-serif font-medium mb-4">
+                  <h3 className="text-xl font-serif font-medium mb-4 text-primary">
                     {step.title}
                   </h3>
-                  <p className="text-body text-muted-foreground">
+                  <p className="text-sm text-muted-foreground leading-relaxed opacity-80">
                     {step.description}
                   </p>
                 </div>

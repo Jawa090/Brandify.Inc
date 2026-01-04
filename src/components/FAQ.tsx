@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, ArrowRight } from "lucide-react";
 
 const faqs = [
   {
@@ -25,16 +25,16 @@ const faqs = [
   },
 ];
 
-const FAQItem = ({ 
-  question, 
-  answer, 
-  isOpen, 
+const FAQItem = ({
+  question,
+  answer,
+  isOpen,
   onClick,
-  index 
-}: { 
-  question: string; 
-  answer: string; 
-  isOpen: boolean; 
+  index
+}: {
+  question: string;
+  answer: string;
+  isOpen: boolean;
   onClick: () => void;
   index: number;
 }) => {
@@ -64,10 +64,10 @@ const FAQItem = ({
           )}
         </div>
       </button>
-      
+
       <motion.div
         initial={false}
-        animate={{ 
+        animate={{
           height: isOpen ? "auto" : 0,
           opacity: isOpen ? 1 : 0
         }}
@@ -88,7 +88,7 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="section-padding bg-secondary/30" ref={ref}>
+    <section className="section-padding bg-secondary/10" ref={ref}>
       <div className="container-premium">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left Column - Header */}
@@ -97,31 +97,29 @@ const FAQ = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <span className="text-sm font-sans font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
-              Questions & Answers
+            <span className="inline-block px-3 py-1 mb-6 text-[10px] uppercase tracking-[0.2em] font-semibold text-primary/60 border border-primary/20 rounded-full">
+              QA
             </span>
-            <h2 className="text-headline mb-6">
+            <h2 className="text-display md:text-5xl lg:text-6xl mb-6 text-primary">
               Frequently
               <br />
-              <span className="italic">Asked</span>
+              <span className="italic font-serif text-muted-foreground/80">Asked</span>
             </h2>
-            <p className="text-body text-muted-foreground mb-8">
-              Everything you need to know about working with us. Can't find the answer you're looking for? Reach out to our team.
+            <p className="text-body text-muted-foreground mb-10 leading-relaxed max-w-sm">
+              Everything you need to know about working with us. We believe in transparency and clear communication from day one.
             </p>
-            
-            <a 
-              href="#contact" 
-              className="inline-flex items-center gap-2 text-sm font-sans font-semibold tracking-wide text-primary hover:text-primary/80 transition-colors"
+
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 text-sm font-sans font-semibold tracking-wide text-primary hover:text-gold transition-colors group"
             >
               Have more questions? Let's talk
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
 
           {/* Right Column - FAQ Items */}
-          <div className="space-y-0">
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
               <FAQItem
                 key={faq.question}

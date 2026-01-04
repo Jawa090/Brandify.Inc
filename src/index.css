@@ -113,7 +113,12 @@
     font-feature-settings: "cv11", "ss01", "ss03";
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif font-medium tracking-tight;
   }
 
@@ -123,11 +128,10 @@
 }
 
 @layer components {
+
   /* Premium Button Variants */
   .btn-primary {
-    @apply relative bg-primary text-primary-foreground px-8 py-4 rounded-full font-sans font-medium tracking-wide
-           transition-all duration-500 ease-out hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]
-           overflow-hidden;
+    @apply relative bg-primary text-primary-foreground px-8 py-4 rounded-full font-sans font-medium tracking-wide transition-all duration-500 ease-out hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] overflow-hidden;
   }
 
   .btn-primary::before {
@@ -138,8 +142,7 @@
   }
 
   .btn-secondary {
-    @apply relative bg-transparent text-primary border-2 border-primary px-8 py-4 rounded-full font-sans font-medium tracking-wide
-           transition-all duration-500 ease-out hover:bg-primary hover:text-primary-foreground overflow-hidden;
+    @apply relative bg-transparent text-primary border-2 border-primary px-8 py-4 rounded-full font-sans font-medium tracking-wide transition-all duration-500 ease-out hover:bg-primary hover:text-primary-foreground overflow-hidden;
   }
 
   .btn-secondary::after {
@@ -167,8 +170,7 @@
 
   /* Premium Card Enhanced */
   .premium-card {
-    @apply relative bg-card rounded-3xl p-8 transition-all duration-700 ease-out
-           hover:shadow-xl hover:-translate-y-2 overflow-hidden;
+    @apply relative bg-card rounded-3xl p-8 transition-all duration-700 ease-out hover:shadow-xl hover:-translate-y-2 overflow-hidden;
   }
 
   .premium-card::before {
@@ -180,15 +182,23 @@
     @apply opacity-100;
   }
 
-  /* Interactive Card */
+  /* Interactive Card - Premium Redesign */
   .interactive-card {
-    @apply relative bg-card rounded-3xl p-8 transition-all duration-500 cursor-pointer
-           hover:shadow-2xl hover:-translate-y-3 overflow-hidden;
+    @apply relative h-full bg-card/40 backdrop-blur-md rounded-3xl p-8 transition-all duration-500 cursor-pointer border border-white/10 shadow-lg hover:shadow-xl hover:-translate-y-2 overflow-hidden;
+  }
+
+  .interactive-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-500;
+  }
+
+  .interactive-card:hover::before {
+    @apply opacity-100;
   }
 
   .interactive-card::after {
     content: '';
-    @apply absolute bottom-0 left-0 h-1 w-0 bg-gradient-gold transition-all duration-700;
+    @apply absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-gold transition-all duration-700;
   }
 
   .interactive-card:hover::after {
@@ -212,6 +222,10 @@
 
   .text-display-xl {
     @apply text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif font-medium leading-[0.9] tracking-tighter;
+  }
+
+  .bg-hero-glow {
+    background: radial-gradient(circle at center, hsl(var(--primary) / 0.03) 0%, transparent 70%);
   }
 
   .text-headline {
@@ -253,9 +267,7 @@
   }
 
   /* Number Styling */
-  .number-display {
-    @apply font-serif text-7xl md:text-8xl font-light opacity-10;
-  }
+
 
   /* Glowing Border */
   .glow-border {
@@ -303,8 +315,7 @@
 
   /* Icon Container */
   .icon-container {
-    @apply w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center transition-all duration-500
-           group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 group-hover:rotate-3;
+    @apply w-16 h-16 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 group-hover:rotate-3 group-hover:border-primary/20 group-hover:shadow-glow-gold;
   }
 
   /* Marquee Container */
@@ -318,12 +329,12 @@
 
   /* Stats Card */
   .stats-card {
-    @apply relative p-8 rounded-3xl bg-card/50 backdrop-blur-sm border border-border/30 
-           transition-all duration-500 hover:bg-card hover:shadow-lg;
+    @apply relative p-8 rounded-3xl bg-card/50 backdrop-blur-sm border border-border/30 transition-all duration-500 hover:bg-card hover:shadow-lg;
   }
 }
 
 @layer utilities {
+
   /* Custom Animations */
   .animate-fade-up {
     animation: fadeUp 0.8s ease-out forwards;
@@ -374,16 +385,45 @@
   }
 
   /* Stagger delays */
-  .delay-75 { animation-delay: 75ms; }
-  .delay-100 { animation-delay: 100ms; }
-  .delay-150 { animation-delay: 150ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-  .delay-500 { animation-delay: 500ms; }
-  .delay-600 { animation-delay: 600ms; }
-  .delay-700 { animation-delay: 700ms; }
-  .delay-800 { animation-delay: 800ms; }
+  .delay-75 {
+    animation-delay: 75ms;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-150 {
+    animation-delay: 150ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+
+  .delay-800 {
+    animation-delay: 800ms;
+  }
 
   /* Hover Effects */
   .hover-lift {
@@ -408,6 +448,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -415,8 +456,13 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
@@ -424,6 +470,7 @@
     opacity: 0;
     transform: translateY(60px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -435,6 +482,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -442,19 +490,25 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(5deg);
   }
 }
 
 @keyframes pulseSoft {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.05);
@@ -465,6 +519,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -474,24 +529,31 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
 }
 
 @keyframes bounceSubtle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px hsl(38 50% 65% / 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px hsl(38 50% 65% / 0.5);
   }
@@ -501,6 +563,7 @@
   from {
     stroke-dashoffset: 1000;
   }
+
   to {
     stroke-dashoffset: 0;
   }
@@ -510,6 +573,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
